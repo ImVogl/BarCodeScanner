@@ -5,3 +5,5 @@
 /x64/**/*
 /BarCodeCore/x64/**/*
 /.vs/**/*
+/BarCodeScanner/obj/**/*
+/BarCodeScanner/bin/**/*
