@@ -22,12 +22,12 @@ public:
 	/// Запуск обработчика сообщений от сканнера QR кодов.
 	/// </summary>
 	/// <param name="hInstance">Указатель на модуль, который будет источником событий для обработки.</param>
-	void StartScanning(HINSTANCE hInstance);
+	void StartScanning(HINSTANCE hInstance, Notification notification);
 
 	/// <summary>
 	/// Запуск обработчика сообщений от сканнера QR кодов.
 	/// </summary>
-	void StartScanning();
+	void StartScanning(Notification notification);
 
 private:
 
@@ -35,6 +35,11 @@ private:
 	/// Указатель экземпляр перехватчик событий.
 	/// </summary>
 	HHOOK pHook;
+
+	/// <summary>
+	/// Ссылка на функцию, оповещающую, о сканировании.
+	/// </summary>
+	static Notification pNotify;
 
 	/// <summary>
 	/// Процедура чтения GUID, полученных от сканнера.

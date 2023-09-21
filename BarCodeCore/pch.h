@@ -9,5 +9,21 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
+typedef void(__stdcall* Notification)(const WORD*);
+
+/// <summary>
+/// Подписка на сканирование GUID.
+/// </summary>
+/// <param name="notification">Ссылка на функцию, которая будет вызвана при сканировании GUID.</param>
+/// <returns>Код выполнения подписки.</returns>
+__int32 CALLBACK ScanningSubscribe(Notification notification);
+
+/// <summary>
+/// Подписка на сканирование GUID.
+/// </summary>
+/// <param name="hInstance">Ссылка на экземпляр окна, в котором будет осуществляться перехват событий.</param>
+/// <param name="notification">Ссылка на функцию, которая будет вызвана при сканировании GUID.</param>
+/// <returns>Код выполнения подписки.</returns>
+__int32 CALLBACK ScanningSubscribe(HINSTANCE hInstance, Notification notification);
 
 #endif //PCH_H

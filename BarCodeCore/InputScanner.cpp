@@ -2,14 +2,22 @@
 #include "InputScanner.h"
 #include <windows.h>
 
-void InputScanner::StartScanning(HINSTANCE hInstance)
+void InputScanner::StartScanning(HINSTANCE hInstance, Notification notification)
 {
-    pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, hInstance, NULL);
+    if (notification == nullptr)
+        return;
+
+    pNotify = notification;
+    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, hInstance, NULL);
 }
 
-void InputScanner::StartScanning()
+void InputScanner::StartScanning(Notification notification)
 {
-    pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, NULL, NULL);
+    if (notification == nullptr)
+        return;
+
+    pNotify = notification;
+    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, NULL, NULL);
 }
 
 LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM actionData) {
@@ -18,20 +26,28 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
         uKeyboardState[i] = 0;
 
     const USHORT size = 1;
+    const USHORT bufferSize = 36;
+
     WORD buffer[size];
-    if (nCode == HC_ACTION) {
-        KBDLLHOOKSTRUCT* pKeyboard = (KBDLLHOOKSTRUCT*)actionData;
-        if (actionType == WM_KEYDOWN || actionType == WM_SYSKEYDOWN) {
-            switch (pKeyboard->vkCode) {
-            case VK_RETURN:
+    WORD resultBuffer[bufferSize];
+    if (nCode != HC_ACTION)
+        return CallNextHookEx(NULL, nCode, actionType, actionData);
+    
+    auto pKeyboard = (KBDLLHOOKSTRUCT*)actionData;
+    if (actionType == WM_KEYDOWN || actionType == WM_SYSKEYDOWN) {
+        switch (pKeyboard->vkCode) {
+        case VK_RETURN:
+            if (!GuidStorage::GetInstance()->GetGuid(resultBuffer, bufferSize))
                 break;
-            default:
-                ToAscii(pKeyboard->vkCode, pKeyboard->scanCode, uKeyboardState, buffer, size);
-                GuidStorage::GetInstance()->AddSymbol(buffer[0]);
-                break;
-            }
+
+            pNotify(resultBuffer);
+            break;
+        default:
+            ToAscii(pKeyboard->vkCode, pKeyboard->scanCode, uKeyboardState, buffer, size);
+            GuidStorage::GetInstance()->AddSymbol(buffer[0]);
+            break;
         }
     }
-
+    
     return CallNextHookEx(NULL, nCode, actionType, actionData);
 }
