@@ -16,7 +16,7 @@ typedef void(__stdcall* Notification)(const WORD*);
 /// </summary>
 /// <param name="notification">Ссылка на функцию, которая будет вызвана при сканировании GUID.</param>
 /// <returns>Код выполнения подписки.</returns>
-__int32 CALLBACK ScanningSubscribe(Notification notification);
+size_t CALLBACK ScanningSubscribe(Notification notification);
 
 /// <summary>
 /// Подписка на сканирование GUID.
@@ -24,6 +24,6 @@ __int32 CALLBACK ScanningSubscribe(Notification notification);
 /// <param name="hInstance">Ссылка на экземпляр окна, в котором будет осуществляться перехват событий.</param>
 /// <param name="notification">Ссылка на функцию, которая будет вызвана при сканировании GUID.</param>
 /// <returns>Код выполнения подписки.</returns>
-__int32 CALLBACK ScanningSubscribe(HINSTANCE hInstance, Notification notification);
+size_t CALLBACK ScanningSubscribe(HINSTANCE hInstance, Notification notification);
 
 #endif //PCH_H

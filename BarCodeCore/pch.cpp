@@ -4,7 +4,7 @@
 #include "InputScanner.h"
 #define GUID_LENGTH 36;
 
-__int32 CALLBACK ScanningSubscribe(Notification notification)
+size_t CALLBACK ScanningSubscribe(Notification notification)
 {
     if (notification == nullptr)
         return NULL;
@@ -15,7 +15,7 @@ __int32 CALLBACK ScanningSubscribe(Notification notification)
     return GUID_LENGTH;
 }
 
-__int32 CALLBACK ScanningSubscribe(HINSTANCE hInstance, Notification notification)
+size_t CALLBACK ScanningSubscribe(HINSTANCE hInstance, Notification notification)
 {
     if (notification == nullptr)
         return NULL;
