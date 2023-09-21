@@ -3,12 +3,12 @@
 
 bool GuidStorage::AddSymbol(WORD symbol)
 {
-	const CHAR digit_low = 48;
-	const CHAR digit_up = 57;
-	const CHAR up_letter_low = 65;
-	const CHAR up_letter_up = 90;
-	const CHAR letter_low = 97;
-	const CHAR letter_up = 122;
+	const WORD digit_low = 48;
+	const WORD digit_up = 57;
+	const WORD up_letter_low = 65;
+	const WORD up_letter_up = 90;
+	const WORD letter_low = 97;
+	const WORD letter_up = 122;
 
 	if (symbol == '\0')
 		return false;
