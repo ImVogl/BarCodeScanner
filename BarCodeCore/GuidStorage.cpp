@@ -31,7 +31,7 @@ bool GuidStorage::AddSymbol(WORD symbol)
 	else
 		this->position = 0;
 
-	return true;;
+	return true;
 }
 
 bool GuidStorage::GetGuid(WORD* buffer, USHORT size)

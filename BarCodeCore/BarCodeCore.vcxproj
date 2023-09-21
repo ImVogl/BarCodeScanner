@@ -142,6 +142,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="GuidStorage.h" />
     <ClInclude Include="InputScanner.h" />
+    <ClInclude Include="Notification.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

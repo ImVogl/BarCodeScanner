@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "InputScanner.h"
+
 #define GUID_LENGTH 36;
 
 size_t CALLBACK ScanningSubscribe(Notification notification)

@@ -1,14 +1,13 @@
 #include "pch.h"
 #include "InputScanner.h"
-#include <windows.h>
 
 void InputScanner::StartScanning(HINSTANCE hInstance, Notification notification)
 {
     if (notification == nullptr)
         return;
 
-    pNotify = notification;
-    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, hInstance, NULL);
+    InputScanner::pNotify = notification;
+    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, hInstance, NULL);
 }
 
 void InputScanner::StartScanning(Notification notification)
@@ -16,8 +15,8 @@ void InputScanner::StartScanning(Notification notification)
     if (notification == nullptr)
         return;
 
-    pNotify = notification;
-    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, NULL, NULL);
+    InputScanner::pNotify = notification;
+    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, NULL, NULL);
 }
 
 LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM actionData) {
@@ -40,7 +39,7 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
             if (!GuidStorage::GetInstance()->GetGuid(resultBuffer, bufferSize))
                 break;
 
-            pNotify(resultBuffer);
+            InputScanner::pNotify(resultBuffer);
             break;
         default:
             ToAscii(pKeyboard->vkCode, pKeyboard->scanCode, uKeyboardState, buffer, size);

@@ -1,5 +1,6 @@
 #pragma once
 #include "GuidStorage.h"
+#include "Notification.h"
 
 class InputScanner
 {

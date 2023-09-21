@@ -9,7 +9,7 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
-typedef void(__stdcall* Notification)(const WORD*);
+#include "Notification.h"
 
 /// <summary>
 /// Подписка на сканирование GUID.
