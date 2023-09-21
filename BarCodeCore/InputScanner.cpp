@@ -4,12 +4,12 @@
 
 void InputScanner::StartScanning(HINSTANCE hInstance)
 {
-    _pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, hInstance, NULL);
+    pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, hInstance, NULL);
 }
 
 void InputScanner::StartScanning()
 {
-    _pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, NULL, NULL);
+    pHook = SetWindowsHookEx(WH_KEYBOARD_LL, ScannerProc, NULL, NULL);
 }
 
 LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM actionData) {

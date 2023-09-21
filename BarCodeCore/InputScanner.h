@@ -4,6 +4,20 @@
 class InputScanner
 {
 public:
+
+	/// <summary>
+	/// Конструктор.
+	/// </summary>
+	InputScanner() = default;
+
+	/// <summary>
+	/// Деструктор.
+	/// </summary>
+	~InputScanner()
+	{
+		UnhookWindowsHookEx(this->pHook);
+	}
+
 	/// <summary>
 	/// Запуск обработчика сообщений от сканнера QR кодов.
 	/// </summary>
@@ -20,7 +34,7 @@ private:
 	/// <summary>
 	/// Указатель экземпляр перехватчик событий.
 	/// </summary>
-	HHOOK _pHook;
+	HHOOK pHook;
 
 	/// <summary>
 	/// Процедура чтения GUID, полученных от сканнера.
