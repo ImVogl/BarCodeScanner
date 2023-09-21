@@ -2,26 +2,26 @@
 
 #include "pch.h"
 #include "InputScanner.h"
-#define UNSUCCESS 1001;
+#define GUID_LENGTH 36;
 
 __int32 CALLBACK ScanningSubscribe(Notification notification)
 {
     if (notification == nullptr)
-        return UNSUCCESS;
+        return NULL;
 
     InputScanner scanner;
     scanner.StartScanning(notification);
 
-    return NULL;
+    return GUID_LENGTH;
 }
 
 __int32 CALLBACK ScanningSubscribe(HINSTANCE hInstance, Notification notification)
 {
     if (notification == nullptr)
-        return UNSUCCESS;
+        return NULL;
 
     InputScanner scanner;
     scanner.StartScanning(notification);
 
-    return NULL;
+    return GUID_LENGTH;
 }
