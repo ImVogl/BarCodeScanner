@@ -12,7 +12,6 @@ size_t CALLBACK Subscribe(Notification notification)
 
     InputScanner scanner;
     scanner.StartScanning(notification);
-
     return GUID_LENGTH;
 }
 
@@ -23,6 +22,5 @@ size_t CALLBACK SubscribeInstance(HINSTANCE hInstance, Notification notification
 
     InputScanner scanner;
     scanner.StartScanning(notification);
-
     return GUID_LENGTH;
 }
