@@ -36,7 +36,7 @@ public:
 	static Notification pNotify;
 
 private:
-
+	
 	/// <summary>
 	/// ”казатель экземпл€р перехватчик событий.
 	/// </summary>

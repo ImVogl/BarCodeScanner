@@ -21,12 +21,13 @@ void InputScanner::StartScanning(Notification notification)
 }
 
 LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM actionData) {
-    BYTE uKeyboardState[256];
-    for (int i = 0; i < 256; ++i)
+    const USHORT keys_count = 256;
+    BYTE uKeyboardState[keys_count];
+    for (int i = 0; i < keys_count; ++i)
         uKeyboardState[i] = 0;
 
     const USHORT size = 4;
-    const USHORT bufferSize = 36;
+    const USHORT bufferSize = 72;
 
     WCHAR buffer[size];
     WCHAR resultBuffer[bufferSize];
