@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "InputScanner.h"
+#include "spdlog/spdlog.h"
 
 Notification InputScanner::pNotify = nullptr;
 void InputScanner::StartScanning(HINSTANCE hInstance, Notification notification)
@@ -43,6 +44,8 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
             if (!GuidStorage::GetInstance()->GetGuid(resultBuffer, bufferSize))
                 break;
 
+            spdlog::debug("Recieved message:");
+            // spdlog::debug(resultBuffer);
             InputScanner::pNotify(resultBuffer);
             break;
         default:

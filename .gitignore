@@ -2,8 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/x64/**/*
-/BarCodeCore/x64/**/*
-/.vs/**/*
-/BarCodeScanner/obj/**/*
-/BarCodeScanner/bin/**/*
+/Source/x64/**/*
+/Source/BarCodeCore/x64/**/*
+/Source/.vs/**/*
+/Source/BarCodeScanner/obj/**/*
+/Source/BarCodeScanner/bin/**/*
+/Build/**/*
