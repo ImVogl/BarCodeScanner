@@ -35,8 +35,10 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
         return CallNextHookEx(NULL, nCode, actionType, actionData);
 
     auto pKeyboard = (KBDLLHOOKSTRUCT*)actionData;
-    if (actionType == WM_KEYDOWN || actionType == WM_SYSKEYDOWN) {
-        switch (pKeyboard->vkCode) {
+    if (!(actionType == WM_KEYDOWN || actionType == WM_SYSKEYDOWN))
+        return CallNextHookEx(NULL, nCode, actionType, actionData);
+    
+    switch (pKeyboard->vkCode) {
         case VK_RETURN:
             if (!GuidStorage::GetInstance()->GetGuid(resultBuffer, bufferSize))
                 break;
@@ -48,7 +50,6 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
             GuidStorage::GetInstance()->AddSymbol(buffer[0]);
             break;
         }
-    }
 
     return CallNextHookEx(NULL, nCode, actionType, actionData);
 }

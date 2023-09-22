@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "InputScanner.h"
+#include "spdlog/spdlog.h"
 
 #define GUID_LENGTH 36;
 
