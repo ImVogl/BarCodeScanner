@@ -5,7 +5,7 @@
 
 #define GUID_LENGTH 36;
 
-size_t CALLBACK ScanningSubscribe(Notification notification)
+size_t CALLBACK Subscribe(Notification notification)
 {
     if (notification == nullptr)
         return NULL;
@@ -16,7 +16,7 @@ size_t CALLBACK ScanningSubscribe(Notification notification)
     return GUID_LENGTH;
 }
 
-size_t CALLBACK ScanningSubscribe(HINSTANCE hInstance, Notification notification)
+size_t CALLBACK SubscribeInstance(HINSTANCE hInstance, Notification notification)
 {
     if (notification == nullptr)
         return NULL;

@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "InputScanner.h"
 
+Notification InputScanner::pNotify = nullptr;
 void InputScanner::StartScanning(HINSTANCE hInstance, Notification notification)
 {
     if (notification == nullptr)

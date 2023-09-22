@@ -13,7 +13,7 @@ namespace BarCodeScanner.Scanner
         /// </summary>
         internal BarCodeScannerX86()
         {
-            ScanningSubscribe(ScanInternal);
+            Subscribe(ScanInternal);
         }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace BarCodeScanner.Scanner
         /// <param name="module">Ссылка на модуль, который генерирует события.</param>
         internal BarCodeScannerX86(Module module)
         {
-            ScanningSubscribe(module, ScanInternal);
+            SubscribeInstance(module, ScanInternal);
         }
         
         /// <summary>
@@ -30,8 +30,8 @@ namespace BarCodeScanner.Scanner
         /// </summary>
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
-        [DllImport("CrossPlatformLibrary-x86", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr ScanningSubscribe(IBarCodeScanner.ScanGuid scan);
+        [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
+        private static extern UIntPtr Subscribe(IBarCodeScanner.ScanGuid scan);
 
         /// <summary>
         /// Подписка на сканирование GUID.
@@ -39,7 +39,7 @@ namespace BarCodeScanner.Scanner
         /// <param name="module">Ссылка на модуль, который генерирует события.</param>
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
-        [DllImport("CrossPlatformLibrary-x86", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr ScanningSubscribe(Module module, IBarCodeScanner.ScanGuid scan);
+        [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
+        private static extern UIntPtr SubscribeInstance(Module module, IBarCodeScanner.ScanGuid scan);
     }
 }

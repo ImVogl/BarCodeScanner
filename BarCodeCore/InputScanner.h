@@ -30,17 +30,17 @@ public:
 	/// </summary>
 	void StartScanning(Notification notification);
 
+	/// <summary>
+	/// —сылка на функцию, оповещающую, о сканировании.
+	/// </summary>
+	static Notification pNotify;
+
 private:
 
 	/// <summary>
 	/// ”казатель экземпл€р перехватчик событий.
 	/// </summary>
 	HHOOK pHook;
-
-	/// <summary>
-	/// —сылка на функцию, оповещающую, о сканировании.
-	/// </summary>
-	static Notification pNotify;
 
 	/// <summary>
 	/// ѕроцедура чтени€ GUID, полученных от сканнера.

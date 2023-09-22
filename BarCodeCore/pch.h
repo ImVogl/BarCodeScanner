@@ -16,7 +16,7 @@
 /// </summary>
 /// <param name="notification">Ссылка на функцию, которая будет вызвана при сканировании GUID.</param>
 /// <returns>Код выполнения подписки.</returns>
-size_t CALLBACK ScanningSubscribe(Notification notification);
+extern "C" __declspec(dllexport) size_t CALLBACK Subscribe(Notification notification);
 
 /// <summary>
 /// Подписка на сканирование GUID.
@@ -24,6 +24,6 @@ size_t CALLBACK ScanningSubscribe(Notification notification);
 /// <param name="hInstance">Ссылка на экземпляр окна, в котором будет осуществляться перехват событий.</param>
 /// <param name="notification">Ссылка на функцию, которая будет вызвана при сканировании GUID.</param>
 /// <returns>Код выполнения подписки.</returns>
-size_t CALLBACK ScanningSubscribe(HINSTANCE hInstance, Notification notification);
+extern "C" __declspec(dllexport) size_t CALLBACK SubscribeInstance(HINSTANCE hInstance, Notification notification);
 
 #endif //PCH_H
