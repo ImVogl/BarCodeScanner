@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "GuidStorage.h"
 
-bool GuidStorage::AddSymbol(WORD symbol)
+bool GuidStorage::AddSymbol(const WORD symbol)
 {
 	const WORD digit_low = 48;
 	const WORD digit_up = 57;
@@ -34,7 +34,7 @@ bool GuidStorage::AddSymbol(WORD symbol)
 	return true;
 }
 
-bool GuidStorage::GetGuid(WORD* buffer, USHORT size)
+bool GuidStorage::GetGuid(WORD* buffer, const USHORT size)
 {
 	if (this->size > size)
 		return false;

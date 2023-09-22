@@ -13,7 +13,7 @@ public:
 	/// </summary>
 	/// <param name="symbol">Добавляемый симвод.</param>
 	/// <returns>Значение, показывающее, что симвод был успешно добавлен в буффер.</returns>
-	bool AddSymbol(WORD symbol);
+	bool AddSymbol(const WORD symbol);
 
 	/// <summary>
 	/// Чтение GUID из хранилища.
@@ -21,7 +21,7 @@ public:
 	/// <param name="buffer">Буфер, куда должен быть скопирован GUID.</param>
 	/// <param name="size">Размер буфера.</param>
 	/// <returns>Значение, показывающее, что удалось прочесть GUID.</returns>
-	bool GetGuid(WORD* buffer, USHORT size);
+	bool GetGuid(WORD* buffer, const USHORT size);
 
 	/// <summary>
 	/// Получение экземпляра класса.

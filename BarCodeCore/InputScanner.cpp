@@ -5,7 +5,7 @@ void InputScanner::StartScanning(HINSTANCE hInstance, Notification notification)
 {
     if (notification == nullptr)
         return;
-
+    
     InputScanner::pNotify = notification;
     this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, hInstance, NULL);
 }
