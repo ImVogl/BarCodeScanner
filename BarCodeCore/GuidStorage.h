@@ -13,7 +13,7 @@ public:
 	/// </summary>
 	/// <param name="symbol">Добавляемый симвод.</param>
 	/// <returns>Значение, показывающее, что симвод был успешно добавлен в буффер.</returns>
-	bool AddSymbol(const WORD symbol);
+	bool AddSymbol(const WCHAR symbol);
 
 	/// <summary>
 	/// Чтение GUID из хранилища.
@@ -21,7 +21,7 @@ public:
 	/// <param name="buffer">Буфер, куда должен быть скопирован GUID.</param>
 	/// <param name="size">Размер буфера.</param>
 	/// <returns>Значение, показывающее, что удалось прочесть GUID.</returns>
-	bool GetGuid(WORD* buffer, const USHORT size);
+	bool GetGuid(WCHAR* buffer, const USHORT size);
 
 	/// <summary>
 	/// Получение экземпляра класса.
@@ -44,7 +44,7 @@ private:
 	/// <summary>
 	/// Буфер, в котором хранятся перехваченные символы.
 	/// </summary>
-	std::vector<WORD> buffer = std::vector<WORD>(this->size, L'\0');
+	std::vector<WCHAR> buffer = std::vector<WCHAR>(this->size, L'\0');
 
 	/// <summary>
 	/// Текущая позиция на запись.

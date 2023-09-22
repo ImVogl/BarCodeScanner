@@ -1,21 +1,22 @@
 #include "pch.h"
 #include "GuidStorage.h"
 
-bool GuidStorage::AddSymbol(const WORD symbol)
+bool GuidStorage::AddSymbol(const WCHAR symbol)
 {
-	const WORD digit_low = 48;
-	const WORD digit_up = 57;
-	const WORD up_letter_low = 65;
-	const WORD up_letter_up = 90;
-	const WORD letter_low = 97;
-	const WORD letter_up = 122;
+	const WCHAR dash_letter = 45;
+	const WCHAR digit_low = 48;
+	const WCHAR digit_up = 57;
+	const WCHAR up_letter_low = 65;
+	const WCHAR up_letter_up = 90;
+	const WCHAR letter_low = 97;
+	const WCHAR letter_up = 122;
 
 	if (symbol == '\0')
 		return false;
 
-	if (symbol < digit_low)
+	if (symbol < digit_low && symbol != dash_letter)
 		return false;
-	
+
 	if (symbol > digit_up && symbol < up_letter_low)
 		return false;
 
@@ -34,17 +35,25 @@ bool GuidStorage::AddSymbol(const WORD symbol)
 	return true;
 }
 
-bool GuidStorage::GetGuid(WORD* buffer, const USHORT size)
+bool GuidStorage::GetGuid(WCHAR* buffer, const USHORT size)
 {
 	if (this->size > size)
 		return false;
-	
+
+	for (auto i = 0; i < size; i++)
+		buffer[i] = '\0';
+
 	auto index = 0;
-	for (auto i = this->position; i < this->size && this->buffer[i] != '\0'; i++)
-		buffer[++index] = this->buffer[i];
+	for (auto i = this->position; i < this->size; i++)
+	{
+		if (this->buffer[i] == '\0')
+			break;
+
+		buffer[index++] = this->buffer[i];
+	}
 
 	for (auto i = 0; i < this->position; i++)
-		buffer[++index] = this->buffer[i];
+		buffer[index++] = this->buffer[i];
 
 	return true;
 }
