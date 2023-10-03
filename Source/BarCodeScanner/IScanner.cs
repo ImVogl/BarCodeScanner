@@ -1,11 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace BarCodeScanner.Scanner;
+namespace BarCodeScanner;
 
 /// <summary>
-/// Интерфейс службы сканирования GUID из штрих кодов.
+/// Интерфейс службы сканирования штрих кодов.
 /// </summary>
-public interface IBarCodeScanner
+public interface IScanner
 {
     /// <summary>
     /// Событие, генерируемое при сканировании штрих-кода.

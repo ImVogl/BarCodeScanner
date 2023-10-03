@@ -1,31 +1,31 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace BarCodeScanner.Scanner
+namespace BarCodeScanner
 {
     /// <summary>
-    /// Служба сканирования штрих-кодов под операционный системы разрядностью x86.
+    /// Служба сканирования GUID из штрих-кодов.
     /// </summary>
-    public sealed class BarCodeScanner : IBarCodeScanner
+    public sealed class GuidScanner : IScanner
     {
         /// <summary>
-        /// Инициализирует новый экземпляр <see cref="BarCodeScanner"/>.
+        /// Инициализирует новый экземпляр <see cref="GuidScanner"/>.
         /// </summary>
-        public BarCodeScanner()
+        public GuidScanner()
         {
             Subscribe(ScanInternal);
         }
 
         /// <summary>
-        /// Инициализирует новый экземпляр <see cref="BarCodeScanner"/>.
+        /// Инициализирует новый экземпляр <see cref="GuidScanner"/>.
         /// </summary>
         /// <param name="module">Ссылка на модуль, который генерирует события.</param>
-        internal BarCodeScanner(Module module)
+        public GuidScanner(Module module)
         {
             SubscribeInstance(module, ScanInternal);
         }
 
-        /// <inheritdoc cref="IBarCodeScanner.Scanned"/>.
+        /// <inheritdoc cref="IScanner.Scanned"/>.
         public event EventHandler<Guid>? Scanned;
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace BarCodeScanner.Scanner
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr Subscribe(IBarCodeScanner.ScanGuid scan);
+        private static extern UIntPtr Subscribe(IScanner.ScanGuid scan);
 
         /// <summary>
         /// Подписка на сканирование GUID.
@@ -56,6 +56,6 @@ namespace BarCodeScanner.Scanner
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr SubscribeInstance(Module module, IBarCodeScanner.ScanGuid scan);
+        private static extern UIntPtr SubscribeInstance(Module module, IScanner.ScanGuid scan);
     }
 }

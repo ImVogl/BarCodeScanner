@@ -1,0 +1,7 @@
+<Project>
+    <ItemGroup Label="Native installation instructions">
+    <Content Include="$(SolutionDir)..\Libs\packages\barcodescanner\1.0.0\lib\native\BarCodeCore.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    </ItemGroup>
+</Project>

@@ -14,7 +14,14 @@
     <Content Include="$(SolutionDir)..\Build\$(Platform)\$(Configuration)\Native\BarCodeCore.dll">
       <Pack>true</Pack>
       <PackagePath>lib/native</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup Label="Native installation instructions">
+    <Content Include="$(SolutionDir)..\NuGet\BarCodeScanner.props">
+      <Pack>true</Pack>
+      <PackagePath>build\</PackagePath>
+    </Content>
+  </ItemGroup>
+
 </Project>
