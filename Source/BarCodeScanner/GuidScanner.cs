@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace BarCodeScanner
 {
@@ -19,10 +18,10 @@ namespace BarCodeScanner
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="GuidScanner"/>.
         /// </summary>
-        /// <param name="module">Ссылка на модуль, который генерирует события.</param>
-        public GuidScanner(Module module)
+        /// <param name="threadId">Идентификатор потока, с которым будет ассоциирован вызов перехватчика.</param>
+        public GuidScanner(int threadId)
         {
-            SubscribeInstance(module, ScanInternal);
+            SubscribeInstance(threadId, ScanInternal);
         }
 
         /// <inheritdoc cref="IScanner.Scanned"/>.
@@ -52,10 +51,10 @@ namespace BarCodeScanner
         /// <summary>
         /// Подписка на сканирование GUID.
         /// </summary>
-        /// <param name="module">Ссылка на модуль, который генерирует события.</param>
+        /// <param name="threadId">Идентификатор потока, с которым будет ассоциирован вызов перехватчика.</param>
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr SubscribeInstance(Module module, IScanner.ScanGuid scan);
+        private static extern UIntPtr SubscribeInstance(int threadId, IScanner.ScanGuid scan);
     }
 }

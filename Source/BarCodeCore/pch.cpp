@@ -8,6 +8,7 @@
 
 size_t CALLBACK Subscribe(Notification notification)
 {
+    spdlog::debug("Simple Subscribtion");
     if (notification == nullptr)
         return NULL;
 
@@ -16,12 +17,13 @@ size_t CALLBACK Subscribe(Notification notification)
     return GUID_LENGTH;
 }
 
-size_t CALLBACK SubscribeInstance(HINSTANCE hInstance, Notification notification)
+size_t CALLBACK SubscribeInstance(DWORD hThread, Notification notification)
 {
+    spdlog::debug("Instance Subscribtion");
     if (notification == nullptr)
         return NULL;
 
     InputScanner scanner;
-    scanner.StartScanning(notification);
+    scanner.StartScanning(hThread, notification);
     return GUID_LENGTH;
 }

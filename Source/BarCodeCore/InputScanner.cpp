@@ -3,13 +3,13 @@
 #include "spdlog/spdlog.h"
 
 Notification InputScanner::pNotify = nullptr;
-void InputScanner::StartScanning(HINSTANCE hInstance, Notification notification)
+void InputScanner::StartScanning(DWORD hThread, Notification notification)
 {
     if (notification == nullptr)
         return;
 
     InputScanner::pNotify = notification;
-    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, hInstance, NULL);
+    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, NULL, hThread);
 }
 
 void InputScanner::StartScanning(Notification notification)
@@ -45,7 +45,6 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
                 break;
 
             spdlog::debug("Recieved message:");
-            // spdlog::debug(resultBuffer);
             InputScanner::pNotify(resultBuffer);
             break;
         default:

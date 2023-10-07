@@ -22,8 +22,8 @@ public:
 	/// <summary>
 	/// Запуск обработчика сообщений от сканнера QR кодов.
 	/// </summary>
-	/// <param name="hInstance">Указатель на модуль, который будет источником событий для обработки.</param>
-	void StartScanning(HINSTANCE hInstance, Notification notification);
+	/// <param name="hThread">Указатель на поток, который будет ассоциирована исполняемая процедура.</param>
+	void StartScanning(DWORD hThread, Notification notification);
 
 	/// <summary>
 	/// Запуск обработчика сообщений от сканнера QR кодов.
