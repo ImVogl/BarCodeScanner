@@ -64,11 +64,6 @@ private:
 	static LRESULT CALLBACK ScannerProc(int nCode, WPARAM actionType, LPARAM actionData);
 
 	/// <summary>
-	/// Запуск цикла обработки сообщений.
-	/// </summary>
-	static void CreateMessageLoop();
-
-	/// <summary>
 	/// Запуск обработчика сообщений от сканнера QR кодов.
 	/// </summary>
 	/// <param name="hInstance">Дескриптор модуля, с которым будет ассоциирована исполняемая процедура.</param>

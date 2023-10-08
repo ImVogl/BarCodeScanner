@@ -13,7 +13,7 @@ namespace BarCodeScanner
         /// </summary>
         public GuidScanner()
         {
-            Subscribe(ScanInternal);
+            Task.Factory.StartNew(() => Subscribe(ScanInternal));
         }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace BarCodeScanner
         /// <param name="threadId">Идентификатор потока, с которым будет ассоциирован вызов перехватчика.</param>
         public GuidScanner(uint threadId)
         {
-            SubscribeThread(threadId, ScanInternal);
+            Task.Factory.StartNew(() => SubscribeThread(threadId, ScanInternal));
         }
 
         /// <summary>
@@ -31,8 +31,7 @@ namespace BarCodeScanner
         /// <param name="module">Модуль, который содержит код исполняемой процедуры.</param>
         public GuidScanner(Module module)
         {
-            Marshal.GetHINSTANCE(module);
-            SubscribeInstance(Marshal.GetHINSTANCE(module), ScanInternal);
+            Task.Factory.StartNew(() => SubscribeInstance(Marshal.GetHINSTANCE(module), ScanInternal));
         }
 
         /// <inheritdoc cref="IScanner.Scanned"/>.

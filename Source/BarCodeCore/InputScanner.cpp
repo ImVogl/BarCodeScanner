@@ -2,7 +2,6 @@
 #include "InputScanner.h"
 #include "spdlog/spdlog.h"
 #include "Logger.h"
-#include <thread>
 
 bool InputScanner::doProcess = false;
 Notification InputScanner::pNotify = nullptr;
@@ -26,35 +25,19 @@ void InputScanner::StartScanningInternal(HINSTANCE hInstance, DWORD hThread, Not
     if (notification == nullptr)
         return;
 
-    InputScanner::pNotify = notification;
-    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, hInstance, hThread);
-    
-    std::thread message_loop(&InputScanner::CreateMessageLoop);
-    message_loop.detach();
-}
-
-void InputScanner::CreateMessageLoop()
-{
     MSG msg = { };
     InputScanner::doProcess = true;
-    if (doProcess)
-        log("True");
-    else
-        log("False");
-
+    InputScanner::pNotify = notification;
+    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, hInstance, hThread);
     while (doProcess)
     {
         log(GetMessage(&msg, NULL, NULL, NULL));
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
-
-    log("Leaved");
 }
 
 LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM actionData) {
-    log("Procedure is called.");
-
     const USHORT keys_count = 256;
     BYTE uKeyboardState[keys_count];
     for (int i = 0; i < keys_count; ++i)
@@ -76,7 +59,6 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
     switch (pKeyboard->vkCode) {
         case VK_RETURN:
             {
-                log("Return pressed");
                 if (!GuidStorage::GetInstance()->GetGuid(resultBuffer, bufferSize))
                     break;
 
