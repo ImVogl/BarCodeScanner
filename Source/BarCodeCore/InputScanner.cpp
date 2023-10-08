@@ -54,10 +54,10 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
     switch (pKeyboard->vkCode) {
         case VK_RETURN:
             {
+                log("Return pressed");
                 if (!GuidStorage::GetInstance()->GetGuid(resultBuffer, bufferSize))
                     break;
 
-                log("Return pressed");
                 InputScanner::pNotify(resultBuffer);
                 break;
             }
