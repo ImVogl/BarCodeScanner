@@ -21,7 +21,15 @@ extern "C" __declspec(dllexport) size_t CALLBACK Subscribe(Notification notifica
 /// <summary>
 /// Подписка на сканирование GUID.
 /// </summary>
-/// <param name="hInstance">Ссылка на экземпляр окна, в котором будет осуществляться перехват событий.</param>
+/// <param name="threadId">Идентификатор потока, с которым будет ассоциирован вызов перехватчика.</param>
+/// <param name="notification">Ссылка на функцию, которая будет вызвана при сканировании GUID.</param>
+/// <returns>Код выполнения подписки.</returns>
+extern "C" __declspec(dllexport) size_t CALLBACK SubscribeThread(DWORD hThread, Notification notification);
+
+/// <summary>
+/// Подписка на сканирование GUID.
+/// </summary>
+/// <param name="hInstance">Дескриптор модуля, с которым будет ассоциирована исполняемая процедура.</param>
 /// <param name="notification">Ссылка на функцию, которая будет вызвана при сканировании GUID.</param>
 /// <returns>Код выполнения подписки.</returns>
 extern "C" __declspec(dllexport) size_t CALLBACK SubscribeInstance(HINSTANCE hInstance, Notification notification);

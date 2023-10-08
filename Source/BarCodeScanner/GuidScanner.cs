@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace BarCodeScanner
 {
@@ -19,9 +20,19 @@ namespace BarCodeScanner
         /// Инициализирует новый экземпляр <see cref="GuidScanner"/>.
         /// </summary>
         /// <param name="threadId">Идентификатор потока, с которым будет ассоциирован вызов перехватчика.</param>
-        public GuidScanner(int threadId)
+        public GuidScanner(uint threadId)
         {
-            SubscribeInstance(threadId, ScanInternal);
+            SubscribeThread(threadId, ScanInternal);
+        }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр <see cref="GuidScanner"/>.
+        /// </summary>
+        /// <param name="module">Модуль, который содержит код исполняемой процедуры.</param>
+        public GuidScanner(Module module)
+        {
+            Marshal.GetHINSTANCE(module);
+            SubscribeInstance(Marshal.GetHINSTANCE(module), ScanInternal);
         }
 
         /// <inheritdoc cref="IScanner.Scanned"/>.
@@ -30,7 +41,7 @@ namespace BarCodeScanner
         /// <summary>
         /// Обработка результатов сканирования.
         /// </summary>
-        /// <param name="value">Значение, полученное в результате сканирования.</param>
+        /// <param name="value">Строка, возвращенная из метода.</param>
         private void ScanInternal(string value)
         {
             if (!Guid.TryParse(value, out var id))
@@ -46,7 +57,7 @@ namespace BarCodeScanner
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr Subscribe(IScanner.ScanGuid scan);
+        private static extern UIntPtr Subscribe([MarshalAs(UnmanagedType.FunctionPtr)] IScanner.ScanGuid scan);
 
         /// <summary>
         /// Подписка на сканирование GUID.
@@ -55,6 +66,15 @@ namespace BarCodeScanner
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr SubscribeInstance(int threadId, IScanner.ScanGuid scan);
+        private static extern UIntPtr SubscribeThread(uint threadId, [MarshalAs(UnmanagedType.FunctionPtr)] IScanner.ScanGuid scan);
+
+        /// <summary>
+        /// Подписка на сканирование GUID.
+        /// </summary>
+        /// <param name="handle">Дескриптор модуля, который содержит код исполняемой процедуры.</param>
+        /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
+        /// <returns>Число сканированных символов.</returns>
+        [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
+        private static extern UIntPtr SubscribeInstance(IntPtr handle, [MarshalAs(UnmanagedType.FunctionPtr)] IScanner.ScanGuid scan);
     }
 }

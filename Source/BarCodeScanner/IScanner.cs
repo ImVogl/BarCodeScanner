@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Text;
 
 namespace BarCodeScanner;
 
@@ -15,7 +16,7 @@ public interface IScanner
     /// <summary>
     /// Делегат метода сканирования штрих кода
     /// </summary>
-    /// <param name="guid">GUID, полученный в результате сканирования.</param>
-    [UnmanagedFunctionPointer(CallingConvention.StdCall, CharSet = CharSet.Ansi)]
-    internal delegate void ScanGuid(string guid);
+    /// <param name="content">Строка, возвращенная из метода.</param>
+    [UnmanagedFunctionPointer(CallingConvention.StdCall, CharSet = CharSet.Unicode)]
+    internal delegate void ScanGuid([MarshalAs(UnmanagedType.LPTStr)] string content);
 }

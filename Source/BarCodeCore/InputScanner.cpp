@@ -1,13 +1,14 @@
 #include "pch.h"
 #include "InputScanner.h"
 #include "spdlog/spdlog.h"
+#include "Logger.h"
 
 Notification InputScanner::pNotify = nullptr;
 void InputScanner::StartScanning(DWORD hThread, Notification notification)
 {
     if (notification == nullptr)
         return;
-
+    
     InputScanner::pNotify = notification;
     this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, NULL, hThread);
 }
@@ -21,7 +22,18 @@ void InputScanner::StartScanning(Notification notification)
     this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, NULL, NULL);
 }
 
+void InputScanner::StartScanning(HINSTANCE hInstance, Notification notification)
+{
+    if (notification == nullptr)
+        return;
+
+    InputScanner::pNotify = notification;
+    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, hInstance, NULL);
+}
+
 LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM actionData) {
+    log("Procedure is called");
+
     const USHORT keys_count = 256;
     BYTE uKeyboardState[keys_count];
     for (int i = 0; i < keys_count; ++i)
@@ -41,16 +53,20 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
     
     switch (pKeyboard->vkCode) {
         case VK_RETURN:
-            if (!GuidStorage::GetInstance()->GetGuid(resultBuffer, bufferSize))
-                break;
+            {
+                if (!GuidStorage::GetInstance()->GetGuid(resultBuffer, bufferSize))
+                    break;
 
-            spdlog::debug("Recieved message:");
-            InputScanner::pNotify(resultBuffer);
-            break;
+                log("Return pressed");
+                InputScanner::pNotify(resultBuffer);
+                break;
+            }
         default:
-            ToUnicode(pKeyboard->vkCode, pKeyboard->scanCode, uKeyboardState, buffer, size, NULL);
-            GuidStorage::GetInstance()->AddSymbol(buffer[0]);
-            break;
+            {
+                ToUnicode(pKeyboard->vkCode, pKeyboard->scanCode, uKeyboardState, buffer, size, NULL);
+                GuidStorage::GetInstance()->AddSymbol(buffer[0]);
+                break;
+            }
         }
 
     return CallNextHookEx(NULL, nCode, actionType, actionData);

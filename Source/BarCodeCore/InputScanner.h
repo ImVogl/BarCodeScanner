@@ -22,7 +22,13 @@ public:
 	/// <summary>
 	/// Запуск обработчика сообщений от сканнера QR кодов.
 	/// </summary>
-	/// <param name="hThread">Указатель на поток, который будет ассоциирована исполняемая процедура.</param>
+	/// <param name="hInstance">Дескриптор модуля, с которым будет ассоциирована исполняемая процедура.</param>
+	void StartScanning(HINSTANCE hInstance, Notification notification);
+
+	/// <summary>
+	/// Запуск обработчика сообщений от сканнера QR кодов.
+	/// </summary>
+	/// <param name="hThread">Указатель на поток, с которым будет ассоциирована исполняемая процедура.</param>
 	void StartScanning(DWORD hThread, Notification notification);
 
 	/// <summary>
