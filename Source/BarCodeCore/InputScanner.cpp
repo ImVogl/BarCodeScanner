@@ -4,15 +4,6 @@
 #include "Logger.h"
 
 Notification InputScanner::pNotify = nullptr;
-void InputScanner::StartScanning(DWORD hThread, Notification notification)
-{
-    if (notification == nullptr)
-        return;
-    
-    InputScanner::pNotify = notification;
-    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, NULL, hThread);
-}
-
 void InputScanner::StartScanning(Notification notification)
 {
     if (notification == nullptr)
@@ -20,6 +11,15 @@ void InputScanner::StartScanning(Notification notification)
 
     InputScanner::pNotify = notification;
     this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, NULL, NULL);
+}
+
+void InputScanner::StartScanning(DWORD hThread, Notification notification)
+{
+    if (notification == nullptr)
+        return;
+    
+    InputScanner::pNotify = notification;
+    this->pHook = SetWindowsHookEx(WH_KEYBOARD_LL, InputScanner::ScannerProc, NULL, hThread);
 }
 
 void InputScanner::StartScanning(HINSTANCE hInstance, Notification notification)
