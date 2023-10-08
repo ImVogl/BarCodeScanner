@@ -17,6 +17,7 @@ public:
 	~InputScanner()
 	{
 		UnhookWindowsHookEx(this->pHook);
+		InputScanner::doProcess = false;
 	}
 
 	/// <summary>
@@ -36,17 +37,22 @@ public:
 	/// </summary>
 	void StartScanning(Notification notification);
 
-	/// <summary>
-	/// Ссылка на функцию, оповещающую, о сканировании.
-	/// </summary>
-	static Notification pNotify;
-
 private:
 	
 	/// <summary>
 	/// Указатель экземпляр перехватчик событий.
 	/// </summary>
 	HHOOK pHook;
+
+	/// <summary>
+	/// Ссылка на функцию, оповещающую, о сканировании.
+	/// </summary>
+	static Notification pNotify;
+
+	/// <summary>
+	/// Значение, показывающее, что нужно осуществлять обработку сообщений.
+	/// </summary>
+	static bool doProcess;
 
 	/// <summary>
 	/// Процедура чтения GUID, полученных от сканнера.
@@ -56,5 +62,18 @@ private:
 	/// <param name="actionData">Данные перехваченного действия.</param>
 	/// <returns>Результат выполнения процедуры.</returns>
 	static LRESULT CALLBACK ScannerProc(int nCode, WPARAM actionType, LPARAM actionData);
+
+	/// <summary>
+	/// Запуск цикла обработки сообщений.
+	/// </summary>
+	static void CreateMessageLoop();
+
+	/// <summary>
+	/// Запуск обработчика сообщений от сканнера QR кодов.
+	/// </summary>
+	/// <param name="hInstance">Дескриптор модуля, с которым будет ассоциирована исполняемая процедура.</param>
+	/// <param name="hThread">Указатель на поток, с которым будет ассоциирована исполняемая процедура.</param>
+	/// <param name="notification">Указатель на метод, выполняемый при перехвате нажатия на Enter.</param>
+	void StartScanningInternal(HINSTANCE hInstance, DWORD hThread, Notification notification);
 };
 
