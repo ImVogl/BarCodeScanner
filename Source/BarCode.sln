@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarCodeScanner", "BarCodeSc
 		{0D124F98-5D37-4279-9B2C-C967B109EC07} = {0D124F98-5D37-4279-9B2C-C967B109EC07}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scanner.Types", "Scanner.Types\Scanner.Types.csproj", "{03BC0E7B-9877-494C-B6C7-92E82322F541}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -24,6 +26,10 @@ Global
 		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Debug|x64.Build.0 = Debug|x64
 		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Release|x64.ActiveCfg = Release|x64
 		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Release|x64.Build.0 = Release|x64
+		{03BC0E7B-9877-494C-B6C7-92E82322F541}.Debug|x64.ActiveCfg = Debug|x64
+		{03BC0E7B-9877-494C-B6C7-92E82322F541}.Debug|x64.Build.0 = Debug|x64
+		{03BC0E7B-9877-494C-B6C7-92E82322F541}.Release|x64.ActiveCfg = Release|x64
+		{03BC0E7B-9877-494C-B6C7-92E82322F541}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

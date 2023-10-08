@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <TargetFrameworks>net6.0;net452</TargetFrameworks>
+    <BaseOutputPath>$(SolutionDir)..\Build\</BaseOutputPath>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+  </ItemGroup>
+
+</Project>

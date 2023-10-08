@@ -1,12 +1,15 @@
-﻿using System.Reflection;
-using System.Runtime.InteropServices;
-
-namespace BarCodeScanner
+﻿namespace BarCodeScanner
 {
+    using System;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using System.Threading.Tasks;
+    using Scanner.Types;
+
     /// <summary>
     /// Служба сканирования GUID из штрих-кодов.
     /// </summary>
-    public sealed class GuidScanner : IScanner
+    public sealed class GuidScanner : INativeScanner
     {
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="GuidScanner"/>.
@@ -35,7 +38,7 @@ namespace BarCodeScanner
         }
 
         /// <inheritdoc cref="IScanner.Scanned"/>.
-        public event EventHandler<Guid>? Scanned;
+        public event EventHandler<Guid> Scanned;
 
         /// <summary>
         /// Обработка результатов сканирования.
@@ -56,7 +59,7 @@ namespace BarCodeScanner
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr Subscribe([MarshalAs(UnmanagedType.FunctionPtr)] IScanner.ScanGuid scan);
+        private static extern UIntPtr Subscribe([MarshalAs(UnmanagedType.FunctionPtr)] ScanGuid scan);
 
         /// <summary>
         /// Подписка на сканирование GUID.
@@ -65,7 +68,7 @@ namespace BarCodeScanner
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr SubscribeThread(uint threadId, [MarshalAs(UnmanagedType.FunctionPtr)] IScanner.ScanGuid scan);
+        private static extern UIntPtr SubscribeThread(uint threadId, [MarshalAs(UnmanagedType.FunctionPtr)] ScanGuid scan);
 
         /// <summary>
         /// Подписка на сканирование GUID.
@@ -74,6 +77,6 @@ namespace BarCodeScanner
         /// <param name="scan">Делегат метода, вызываемого при сканировании GUID.</param>
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
-        private static extern UIntPtr SubscribeInstance(IntPtr handle, [MarshalAs(UnmanagedType.FunctionPtr)] IScanner.ScanGuid scan);
+        private static extern UIntPtr SubscribeInstance(IntPtr handle, [MarshalAs(UnmanagedType.FunctionPtr)] ScanGuid scan);
     }
 }

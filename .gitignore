@@ -7,4 +7,6 @@
 /Source/.vs/**/*
 /Source/BarCodeScanner/obj/**/*
 /Source/BarCodeScanner/bin/**/*
+/Source/Scanner.Types/obj/**/*
+/Source/Scanner.Types/bin/**/*
 /Build/**/*
