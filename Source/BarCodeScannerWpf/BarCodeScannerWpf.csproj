@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net452-windows</TargetFramework>
+    <TargetFrameworks>net6.0-windows;net452-windows</TargetFrameworks>
+    <BaseOutputPath>$(SolutionDir)..\Build\</BaseOutputPath>
+    <UseWPF>true</UseWPF>
+    <SignAssembly>False</SignAssembly>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Platforms>x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+  </ItemGroup>
+
+</Project>
