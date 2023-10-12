@@ -4,7 +4,6 @@
     using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Threading.Tasks;
-    using Scanner.Types;
 
     /// <summary>
     /// Служба сканирования GUID из штрих-кодов.
@@ -37,8 +36,15 @@
             Task.Factory.StartNew(() => SubscribeInstance(Marshal.GetHINSTANCE(module), ScanInternal));
         }
 
-        /// <inheritdoc cref="IScanner.Scanned"/>.
+        /// <inheritdoc cref="INativeScanner.Scanned"/>.
         public event EventHandler<Guid> Scanned;
+
+        /// <summary>
+        /// Освобождение занятых ресурсов.
+        /// </summary>
+        public void Dispose()
+        {
+        }
 
         /// <summary>
         /// Обработка результатов сканирования.

@@ -1,7 +1,9 @@
-﻿namespace BarCodeScanner
+﻿using System;
+
+namespace BarCodeScanner
 {
     using System.Runtime.InteropServices;
-    using Scanner.Types;
+    using JetBrains.Annotations;
 
     /// <summary>
     /// Делегат метода сканирования штрих кода
@@ -13,7 +15,12 @@
     /// <summary>
     /// Интерфейс службы сканирования штрих кодов.
     /// </summary>
-    public interface INativeScanner : IScanner
+    public interface INativeScanner : IDisposable
     {
+        /// <summary>
+        /// Событие, генерируемое при сканировании штрих-кода.
+        /// </summary>
+        [CanBeNull]
+        event EventHandler<Guid> Scanned;
     }
 }

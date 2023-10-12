@@ -51,11 +51,10 @@ LRESULT CALLBACK InputScanner::ScannerProc(int nCode, WPARAM actionType, LPARAM 
     if (nCode != HC_ACTION)
         return CallNextHookEx(NULL, nCode, actionType, actionData);
 
-    auto pKeyboard = (KBDLLHOOKSTRUCT*)actionData;
-    log(pKeyboard->vkCode);
     if (!(actionType == WM_KEYDOWN || actionType == WM_SYSKEYDOWN))
         return CallNextHookEx(NULL, nCode, actionType, actionData);
-    
+
+    auto pKeyboard = (KBDLLHOOKSTRUCT*)actionData;
     switch (pKeyboard->vkCode) {
         case VK_RETURN:
             {

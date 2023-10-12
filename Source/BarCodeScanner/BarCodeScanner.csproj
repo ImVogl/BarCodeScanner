@@ -27,8 +27,4 @@
     <PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Scanner.Types\Scanner.Types.csproj" />
-  </ItemGroup>
-
 </Project>
