@@ -36,3 +36,8 @@ size_t CALLBACK SubscribeInstance(HINSTANCE hInstance, Notification notification
     scanner.StartScanning(hInstance, notification);
     return GUID_LENGTH;
 }
+
+void CALLBACK BreakMessageLoop()
+{
+    InputScanner::doProcess = false;
+}

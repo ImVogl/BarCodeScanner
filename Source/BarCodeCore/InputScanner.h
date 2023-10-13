@@ -7,6 +7,11 @@ class InputScanner
 public:
 
 	/// <summary>
+	/// Значение, показывающее, что нужно осуществлять обработку сообщений.
+	/// </summary>
+	static bool doProcess;
+
+	/// <summary>
 	/// Конструктор.
 	/// </summary>
 	InputScanner() = default;
@@ -48,11 +53,6 @@ private:
 	/// Ссылка на функцию, оповещающую, о сканировании.
 	/// </summary>
 	static Notification pNotify;
-
-	/// <summary>
-	/// Значение, показывающее, что нужно осуществлять обработку сообщений.
-	/// </summary>
-	static bool doProcess;
 
 	/// <summary>
 	/// Процедура чтения GUID, полученных от сканнера.

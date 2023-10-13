@@ -44,6 +44,7 @@
         /// </summary>
         public void Dispose()
         {
+            BreakMessageLoop();
         }
 
         /// <summary>
@@ -84,5 +85,11 @@
         /// <returns>Число сканированных символов.</returns>
         [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
         private static extern UIntPtr SubscribeInstance(IntPtr handle, [MarshalAs(UnmanagedType.FunctionPtr)] ScanGuid scan);
+
+        /// <summary>
+        /// Отмена обработки сообщений.
+        /// </summary>
+        [DllImport("BarCodeCore", CallingConvention = CallingConvention.StdCall)]
+        private static extern void BreakMessageLoop();
     }
 }

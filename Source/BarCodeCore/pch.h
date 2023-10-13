@@ -34,4 +34,9 @@ extern "C" __declspec(dllexport) size_t CALLBACK SubscribeThread(DWORD hThread, 
 /// <returns>Код выполнения подписки.</returns>
 extern "C" __declspec(dllexport) size_t CALLBACK SubscribeInstance(HINSTANCE hInstance, Notification notification);
 
+/// <summary>
+/// Выход из цикла обработки сообщений.
+/// </summary>
+extern "C" __declspec(dllexport) void CALLBACK BreakMessageLoop();
+
 #endif //PCH_H
