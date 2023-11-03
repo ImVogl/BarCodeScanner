@@ -7,7 +7,9 @@
     <UseWPF>true</UseWPF>
     <SignAssembly>False</SignAssembly>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Platforms>x64</Platforms>
+    <Platforms>x64;AnyCPU</Platforms>
+    <IncludeSymbols>True</IncludeSymbols>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

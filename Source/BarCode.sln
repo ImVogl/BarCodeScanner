@@ -14,22 +14,36 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarCodeScannerWpf", "BarCod
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D124F98-5D37-4279-9B2C-C967B109EC07}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{0D124F98-5D37-4279-9B2C-C967B109EC07}.Debug|Any CPU.Build.0 = Debug|x64
 		{0D124F98-5D37-4279-9B2C-C967B109EC07}.Debug|x64.ActiveCfg = Debug|x64
 		{0D124F98-5D37-4279-9B2C-C967B109EC07}.Debug|x64.Build.0 = Debug|x64
+		{0D124F98-5D37-4279-9B2C-C967B109EC07}.Release|Any CPU.ActiveCfg = Release|x64
+		{0D124F98-5D37-4279-9B2C-C967B109EC07}.Release|Any CPU.Build.0 = Release|x64
 		{0D124F98-5D37-4279-9B2C-C967B109EC07}.Release|x64.ActiveCfg = Release|x64
 		{0D124F98-5D37-4279-9B2C-C967B109EC07}.Release|x64.Build.0 = Release|x64
+		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Debug|Any CPU.Build.0 = Debug|x64
 		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Debug|x64.ActiveCfg = Debug|x64
 		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Debug|x64.Build.0 = Debug|x64
+		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Release|Any CPU.ActiveCfg = Release|x64
+		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Release|Any CPU.Build.0 = Release|x64
 		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Release|x64.ActiveCfg = Release|x64
 		{AD791C7A-2C9D-4657-802A-9CF6B11D0F6A}.Release|x64.Build.0 = Release|x64
-		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Debug|x64.Build.0 = Debug|Any CPU
-		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Release|x64.ActiveCfg = Release|Any CPU
-		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Release|x64.Build.0 = Release|Any CPU
+		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Debug|x64.ActiveCfg = Debug|x64
+		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Debug|x64.Build.0 = Debug|x64
+		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Release|x64.ActiveCfg = Release|x64
+		{DE19CF45-9DDC-42E0-B752-BD815DF1780B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
